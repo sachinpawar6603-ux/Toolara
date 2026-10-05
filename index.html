@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Toolora — Free AI & Online Tools</title>
+  <meta name="description" content="Toolora provides free AI, productivity, calculator and online tools for everyone.">
+  <meta name="keywords" content="free online tools, AI tools, AI prompt generator, calculators, Toolora">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b1020;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid #202941;
+      background: rgba(11,16,32,0.95);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #7c8cff;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      color: #b9c1d9;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 85px 0 65px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 14px;
+      border: 1px solid #303b64;
+      border-radius: 30px;
+      color: #aeb8ff;
+      background: #121a35;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -3px;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    h1 span {
+      color: #8d9aff;
+    }
+
+    .hero p {
+      color: #aeb7cd;
+      max-width: 650px;
+      margin: 25px auto;
+      font-size: 18px;
+    }
+
+    .search {
+      max-width: 600px;
+      margin: 30px auto 0;
+      display: flex;
+      background: #141b30;
+      border: 1px solid #303a5b;
+      border-radius: 14px;
+      padding: 6px;
+    }
+
+    .search input {
+      flex: 1;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: white;
+      padding: 14px;
+      font-size: 15px;
+    }
+
+    .search button {
+      border: 0;
+      border-radius: 10px;
+      background: #7c8cff;
+      color: white;
+      padding: 0 20px;
+      font-weight: bold;
+    }
+
+    /* Sections */
+    section {
+      padding: 65px 0;
+    }
+
+    .section-title {
+      margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      margin-bottom: 7px;
+    }
+
+    .section-title p {
+      color: #8993ac;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: #11182b;
+      border: 1px solid #222d49;
+      border-radius: 18px;
+      padding: 24px;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #5867a8;
+    }
+
+    .icon {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: #1c2542;
+      font-size: 21px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: #8993ac;
+      font-size: 14px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 15px;
+      color: #aeb8ff;
+      font-size: 13px;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      background: #11182b;
+      border: 1px solid #222d49;
+      border-radius: 24px;
+      padding: 50px 20px;
+    }
+
+    .cta h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .cta p {
+      color: #909ab4;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #7c8cff;
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #202941;
+      padding: 35px 0;
+      color: #78839d;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* Mobile */
+    @media (max-width: 750px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 60px 0 45px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .search {
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .search button {
+        padding: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">Tool<span>ora</span></a>
+
+    <nav>
+      <a href="#ai">AI Tools</a>
+      <a href="#calculators">Calculators</a>
+      <a href="#tools">Online Tools</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+
+      <div class="badge">✨ Free tools for everyone</div>
+
+      <h1>
+        Simple tools.<br>
+        <span>Smarter work.</span>
+      </h1>
+
+      <p>
+        Discover free AI, productivity, calculator and online tools
+        designed to make everyday tasks faster and easier.
+      </p>
+
+      <div class="search">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search for a tool..."
+        >
+        <button onclick="searchTools()">Search</button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- AI TOOLS -->
+
+  <section id="ai">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>🤖 AI Tools</h2>
+        <p>Useful AI-powered tools for everyday work.</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="icon">✨</div>
+          <h3>AI Prompt Generator</h3>
+          <p>Create better prompts for AI tools in seconds.</p>
+          <span class="tag">Coming soon →</span>
+        </div>
+
+        <div class="card">
+          <div class="icon">✍️</div>
+          <h3>AI Caption Generator</h3>
+          <p>Generate creative captions for Instagram and social media.</p>
+          <span class="tag">Coming soon →</span>
+        </div>
+
+        <div class="card">
+          <div class="icon">🎨</div>
+          <h3>AI Image Prompt Generator</h3>
+          <p>Create detailed prompts for AI image generation.</p>
+          <span class="tag">Coming soon →</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CALCULATORS -->
+
+  <section id="calculators">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>🧮 Calculators</h2>
+        <p>Fast and simple calculators for everyday use.</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="icon">🎂</div>
+          <h3>Age Calculator</h3>
+          <p>Calculate your exact age quickly and easily.</p>
+          <span class="tag">Coming soon →</span>
+        </div>
+
+        <div class="card">
+          <div class="icon">%</div>
+          <h3>Percentage Calculator</h3>
+          <p>Calculate percentages without complicated formulas.</p>
+          <span class="tag">Coming soon →</span>
+        </div>
+
+        <div class="card">
+          <div class="icon">₹</div>
+          <h3>EMI Calculator</h3>
+          <p>Calculate monthly loan payments easily.</p>
+          <span class="tag">Coming soon →</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ONLINE TOOLS -->
+
+  <section id="tools">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>🛠️ Online Tools</h2>
+        <p>More useful tools are coming to Toolora.</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="icon">🖼️</div>
+          <h3>Image Compressor</h3>
+          <p>Reduce image file size while keeping good quality.</p>
+          <span class="tag">Coming soon →</span>
+        </div>
+
+        <div class="card">
+          <div class="icon">📄</div>
+          <h3>JPG to PDF</h3>
+          <p>Convert images into PDF files easily.</p>
+          <span class="tag">Coming soon →</span>
+        </div>
+
+        <div class="card">
+          <div class="icon">🔳</div>
+          <h3>QR Code Generator</h3>
+          <p>Create QR codes quickly for links and text.</p>
+          <span class="tag">Coming soon →</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="container">
+
+      <div class="cta">
+        <h2>More powerful tools are coming.</h2>
+
+        <p>
+          Toolora is being built to make useful online tools
+          simple, fast and free.
+        </p>
+
+        <a href="#ai" class="btn">Explore Tools</a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+  <div class="container">
+    © 2026 Toolora. All rights reserved.
+  </div>
+</footer>
+
+
+<script>
+  function searchTools() {
+
+    const input =
+      document.getElementById("searchInput").value.toLowerCase();
+
+    if (!input) {
+      alert("Please type a tool name.");
+      return;
+    }
+
+    if (input.includes("ai") || input.includes("prompt")) {
+      document.getElementById("ai").scrollIntoView({
+        behavior: "smooth"
+      });
+      return;
+    }
+
+    if (
+      input.includes("calculator") ||
+      input.includes("age") ||
+      input.includes("percentage") ||
+      input.includes("emi")
+    ) {
+      document.getElementById("calculators").scrollIntoView({
+        behavior: "smooth"
+      });
+      return;
+    }
+
+    if (
+      input.includes("image") ||
+      input.includes("pdf") ||
+      input.includes("qr")
+    ) {
+      document.getElementById("tools").scrollIntoView({
+        behavior: "smooth"
+      });
+      return;
+    }
+
+    alert("This tool is coming soon to Toolora!");
+  }
+</script>
+
+</body>
+  </html>
