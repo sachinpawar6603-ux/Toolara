@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Age Calculator – Toolara</title>
+<meta name="description" content="Calculate your exact age in years, months and days with Toolara's free Age Calculator.">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0b1020;
+  color: white;
+}
+
+header {
+  padding: 22px 28px;
+  border-bottom: 1px solid #202945;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.logo span {
+  color: #7c83ff;
+}
+
+.container {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.back {
+  color: #9da5ff;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #9ba3bd;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.card {
+  background: #121a30;
+  border: 1px solid #273253;
+  border-radius: 22px;
+  padding: 28px;
+  margin-top: 35px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: #cbd1e8;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #303b61;
+  background: #0d1428;
+  color: white;
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+
+button {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: #7c83ff;
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.result {
+  display: none;
+  margin-top: 25px;
+  padding: 22px;
+  border-radius: 16px;
+  background: #0d1428;
+  border: 1px solid #303b61;
+  text-align: center;
+}
+
+.result h2 {
+  margin-top: 0;
+  color: #aab0ff;
+}
+
+.age {
+  font-size: 30px;
+  font-weight: 800;
+  margin: 15px 0;
+}
+
+.error {
+  color: #ff8d8d;
+  display: none;
+  margin-top: 15px;
+}
+
+footer {
+  text-align: center;
+  color: #707993;
+  padding: 50px 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Tool<span>ara</span></div>
+</header>
+
+<div class="container">
+
+  <a class="back" href="index.html">← Back to Toolara</a>
+
+  <h1>🎂 Age Calculator</h1>
+
+  <p class="subtitle">
+    Calculate your exact age in years, months and days.
+    Fast, simple and completely free.
+  </p>
+
+  <div class="card">
+
+    <label for="birthdate">Enter your date of birth</label>
+
+    <input type="date" id="birthdate">
+
+    <button onclick="calculateAge()">Calculate My Age</button>
+
+    <div class="error" id="error">
+      Please enter a valid date of birth.
+    </div>
+
+    <div class="result" id="result">
+
+      <h2>Your Exact Age</h2>
+
+      <div class="age" id="ageText"></div>
+
+      <p id="daysText"></p>
+
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Toolara. All rights reserved.
+</footer>
+
+<script>
+function calculateAge() {
+
+  const input = document.getElementById("birthdate");
+  const birthDate = new Date(input.value);
+  const today = new Date();
+
+  const error = document.getElementById("error");
+  const result = document.getElementById("result");
+
+  if (!input.value || birthDate > today) {
+    error.style.display = "block";
+    result.style.display = "none";
+    return;
+  }
+
+  error.style.display = "none";
+
+  let years = today.getFullYear() - birthDate.getFullYear();
+  let months = today.getMonth() - birthDate.getMonth();
+  let days = today.getDate() - birthDate.getDate();
+
+  if (days < 0) {
+    months--;
+
+    const previousMonth = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      0
+    );
+
+    days += previousMonth.getDate();
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  const diff = today - birthDate;
+  const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+  document.getElementById("ageText").textContent =
+    years + " Years, " + months + " Months, " + days + " Days";
+
+  document.getElementById("daysText").textContent =
+    "That's approximately " + totalDays.toLocaleString() + " days old.";
+
+  result.style.display = "block";
+}
+</script>
+
+</body>
+  </html>
