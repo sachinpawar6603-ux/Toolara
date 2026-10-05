@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Percentage Calculator – Toolara</title>
+<meta name="description" content="Free percentage calculator. Calculate percentages, percentage increase and decrease quickly and easily.">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0b1020;
+  color: white;
+}
+
+header {
+  padding: 22px 28px;
+  border-bottom: 1px solid #202945;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.logo span {
+  color: #7c83ff;
+}
+
+.container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.back {
+  color: #9da5ff;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 28px;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #9ba3bd;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.card {
+  background: #121a30;
+  border: 1px solid #273253;
+  border-radius: 22px;
+  padding: 28px;
+  margin-top: 30px;
+}
+
+.card h2 {
+  font-size: 22px;
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  color: #cbd1e8;
+  font-weight: 600;
+  margin: 16px 0 8px;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #303b61;
+  background: #0d1428;
+  color: white;
+  font-size: 17px;
+}
+
+button {
+  width: 100%;
+  padding: 16px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 12px;
+  background: #7c83ff;
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.result {
+  display: none;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  background: #0d1428;
+  border: 1px solid #303b61;
+  text-align: center;
+}
+
+.result h3 {
+  color: #aab0ff;
+  margin-top: 0;
+}
+
+.answer {
+  font-size: 30px;
+  font-weight: 800;
+  margin-top: 10px;
+}
+
+.error {
+  display: none;
+  color: #ff8d8d;
+  margin-top: 15px;
+}
+
+footer {
+  text-align: center;
+  color: #707993;
+  padding: 40px 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Tool<span>ara</span></div>
+</header>
+
+<div class="container">
+
+<a class="back" href="index.html">← Back to Toolara</a>
+
+<h1>📊 Percentage Calculator</h1>
+
+<p class="subtitle">
+Calculate percentages quickly and easily with Toolara's free online percentage calculator.
+</p>
+
+<!-- Calculator 1 -->
+<div class="card">
+
+<h2>What is X% of Y?</h2>
+
+<label for="percent1">Percentage (%)</label>
+<input type="number" id="percent1" placeholder="Example: 20">
+
+<label for="number1">Number</label>
+<input type="number" id="number1" placeholder="Example: 500">
+
+<button onclick="calculatePercentage()">
+Calculate
+</button>
+
+<div class="result" id="result1">
+<h3>Result</h3>
+<div class="answer" id="answer1"></div>
+</div>
+
+</div>
+
+<!-- Calculator 2 -->
+<div class="card">
+
+<h2>X is what percent of Y?</h2>
+
+<label for="number2">X</label>
+<input type="number" id="number2" placeholder="Example: 50">
+
+<label for="number3">Y</label>
+<input type="number" id="number3" placeholder="Example: 200">
+
+<button onclick="calculateWhatPercent()">
+Calculate
+</button>
+
+<div class="result" id="result2">
+<h3>Result</h3>
+<div class="answer" id="answer2"></div>
+</div>
+
+</div>
+
+<!-- Calculator 3 -->
+<div class="card">
+
+<h2>Percentage Increase / Decrease</h2>
+
+<label for="oldValue">Original Value</label>
+<input type="number" id="oldValue" placeholder="Example: 100">
+
+<label for="newValue">New Value</label>
+<input type="number" id="newValue" placeholder="Example: 125">
+
+<button onclick="calculateChange()">
+Calculate Change
+</button>
+
+<div class="result" id="result3">
+<h3>Result</h3>
+<div class="answer" id="answer3"></div>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Toolara. All rights reserved.
+</footer>
+
+<script>
+
+function calculatePercentage() {
+
+  const percentage = parseFloat(
+    document.getElementById("percent1").value
+  );
+
+  const number = parseFloat(
+    document.getElementById("number1").value
+  );
+
+  if (isNaN(percentage) || isNaN(number)) {
+    alert("Please enter both values.");
+    return;
+  }
+
+  const result = (percentage / 100) * number;
+
+  document.getElementById("answer1").textContent =
+    result.toLocaleString(undefined, {
+      maximumFractionDigits: 2
+    });
+
+  document.getElementById("result1").style.display = "block";
+}
+
+
+function calculateWhatPercent() {
+
+  const x = parseFloat(
+    document.getElementById("number2").value
+  );
+
+  const y = parseFloat(
+    document.getElementById("number3").value
+  );
+
+  if (isNaN(x) || isNaN(y) || y === 0) {
+    alert("Please enter valid values.");
+    return;
+  }
+
+  const result = (x / y) * 100;
+
+  document.getElementById("answer2").textContent =
+    result.toLocaleString(undefined, {
+      maximumFractionDigits: 2
+    }) + "%";
+
+  document.getElementById("result2").style.display = "block";
+}
+
+
+function calculateChange() {
+
+  const oldValue = parseFloat(
+    document.getElementById("oldValue").value
+  );
+
+  const newValue = parseFloat(
+    document.getElementById("newValue").value
+  );
+
+  if (isNaN(oldValue) || isNaN(newValue) || oldValue === 0) {
+    alert("Please enter valid values.");
+    return;
+  }
+
+  const change =
+    ((newValue - oldValue) / oldValue) * 100;
+
+  let text;
+
+  if (change > 0) {
+    text = "Increase: " + change.toFixed(2) + "%";
+  } else if (change < 0) {
+    text = "Decrease: " + Math.abs(change).toFixed(2) + "%";
+  } else {
+    text = "No change: 0%";
+  }
+
+  document.getElementById("answer3").textContent = text;
+
+  document.getElementById("result3").style.display = "block";
+}
+
+</script>
+
+</body>
+  </html>
